@@ -1,21 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://cr57thg7k0tyk"]
+[gd_scene load_steps=7 format=3 uid="uid://cr57thg7k0tyk"]
 
 [ext_resource type="PackedScene" uid="uid://dn5xfommfsksc" path="res://Scenes/Player/player.tscn" id="1_xtf6f"]
+[ext_resource type="PackedScene" uid="uid://dgpuglw7ci7df" path="res://Scenes/Slenderman/slenderman.tscn" id="2_jolfa"]
+[ext_resource type="PackedScene" uid="uid://dcy6137g8is0w" path="res://Scenes/Slenderman/basic_enemy.tscn" id="3_03x5g"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_buovh"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_jolfa"]
+vertices = PackedVector3Array(-49.93466, 0.1770508, -49.5, -49.93466, 0.1770508, 49.5, 49.56534, 0.1770508, 49.5, 49.56534, 0.1770508, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+cell_height = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jolfa"]
+size = Vector3(100, 0.5, 100)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xtf6f"]
-size = Vector2(20, 20)
+size = Vector2(100, 100)
 
 [node name="Map" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_xtf6f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7652724, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8751221, 0)
 
-[node name="Baseplate" type="StaticBody3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_jolfa")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Baseplate"]
-shape = SubResource("WorldBoundaryShape3D_buovh")
+[node name="Baseplate" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.060245514, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Baseplate"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Baseplate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43466187, -0.27294922, 0.089904785)
+shape = SubResource("BoxShape3D_jolfa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Baseplate"]
 mesh = SubResource("PlaneMesh_xtf6f")
+
+[node name="Slenderman" parent="NavigationRegion3D" instance=ExtResource("2_jolfa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0372696, 7.311229, 0)
+
+[node name="Basic Enemy" parent="." instance=ExtResource("3_03x5g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.190065, 1.5, 1.3563371)

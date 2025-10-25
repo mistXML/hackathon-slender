@@ -1,0 +1,11 @@
+Model Information:
+* title:	Slender Man
+* source:	https://sketchfab.com/3d-models/slender-man-ad455ff3d1334751838caf3b69212377
+* author:	Sirenlight 2 (https://sketchfab.com/Garrys-Mod)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Slender Man" (https://sketchfab.com/3d-models/slender-man-ad455ff3d1334751838caf3b69212377) by Sirenlight 2 (https://sketchfab.com/Garrys-Mod) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
