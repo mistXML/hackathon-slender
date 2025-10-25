@@ -6,12 +6,13 @@
 radius = 0.3
 height = 1.75
 
-[node name="Player" type="Node3D"]
-
-[node name="PlayerNode" type="CharacterBody3D" parent="."]
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_uvnfx")
 
-[node name="PlayerHitbox" type="CollisionShape3D" parent="PlayerNode"]
+[node name="PlayerHitbox" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ea215")
 
-[node name="Camera3D" type="Camera3D" parent="PlayerNode"]
+[node name="Neck" type="Node3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="Neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.3291583)
