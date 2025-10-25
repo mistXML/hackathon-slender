@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn5xfommfsksc"]
+
+[ext_resource type="Script" uid="uid://owupg73sv6vl" path="res://Scripts/Player/player_node.gd" id="1_uvnfx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ea215"]
+radius = 0.3
+height = 1.75
+
+[node name="Player" type="Node3D"]
+
+[node name="PlayerNode" type="CharacterBody3D" parent="."]
+script = ExtResource("1_uvnfx")
+
+[node name="PlayerHitbox" type="CollisionShape3D" parent="PlayerNode"]
+shape = SubResource("CapsuleShape3D_ea215")
+
+[node name="Camera3D" type="Camera3D" parent="PlayerNode"]
