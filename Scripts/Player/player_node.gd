@@ -4,6 +4,10 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var sensitivity = 0.001
 var inventory = []
+var page_count = 0
+@onready var slender = get_tree().get_current_scene().get_node("Player")
+signal player_interact
+
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -13,9 +17,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		$Neck.rotate_y(-event.relative.x * sensitivity)
 		$Neck/Camera.rotate_x(-event.relative.y * sensitivity)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
+	if Input.is_action_just_pressed("interact"):
+		player_interact.emit()
 
 
 func _physics_process(delta: float) -> void:
@@ -48,4 +54,8 @@ func get_inventory():
 #@grok make slenderman work
 
 func add_to_inventory(page):
-	inventory.append_array(page)
+	inventory.append(page)
+	page_count += 1
+	slender.base_aggressiveness_mult()
+	slender.add_aggressiveness()
+	$PageCounter/Text.text = "Pages: " + str(page_count)

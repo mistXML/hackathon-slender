@@ -13,7 +13,7 @@ script = ExtResource("1_p0fsi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8275751, 0)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="NavAgent"]
-debug_enabled = true
+avoidance_enabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2422402, 0)
@@ -22,3 +22,8 @@ debug_fill = false
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("1_554q1")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.30000013, 0)
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
