@@ -1,9 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr57thg7k0tyk"]
+[gd_scene load_steps=9 format=3 uid="uid://cr57thg7k0tyk"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_buovh"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xtf6f"]
-size = Vector2(20, 20)
+size = Vector2(200, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_buovh"]
+size = Vector3(1, 16, 19)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xtf6f"]
+size = Vector3(1, 16, 19)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jolfa"]
+size = Vector3(2, 3, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_03x5g"]
+size = Vector3(20, 16, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pvgv4"]
+size = Vector3(20, 16, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_anho1"]
+size = Vector3(20, 16, 1)
 
 [node name="Map" type="Node3D"]
 
@@ -14,3 +32,54 @@ shape = SubResource("WorldBoundaryShape3D_buovh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Baseplate"]
 mesh = SubResource("PlaneMesh_xtf6f")
+
+[node name="B52 Building" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 0, -72)
+
+[node name="B52 Wall-S" type="StaticBody3D" parent="B52 Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 9)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="B52 Building/B52 Wall-S"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -9)
+shape = SubResource("BoxShape3D_buovh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Building/B52 Wall-S"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -9)
+mesh = SubResource("BoxMesh_xtf6f")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="B52 Wall-N" type="StaticBody3D" parent="B52 Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 9)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="B52 Building/B52 Wall-N"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -9)
+shape = SubResource("BoxShape3D_buovh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Building/B52 Wall-N"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -9)
+mesh = SubResource("BoxMesh_xtf6f")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="B52 Wall-W" type="StaticBody3D" parent="B52 Building"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="B52 Building/B52 Wall-W"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.1, -3)
+shape = SubResource("BoxShape3D_jolfa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Building/B52 Wall-W"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 9)
+mesh = SubResource("BoxMesh_03x5g")
+
+[node name="B52 Wall-E" type="StaticBody3D" parent="B52 Building"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="B52 Building/B52 Wall-E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 8, -9)
+shape = SubResource("BoxShape3D_pvgv4")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Building/B52 Wall-E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 8, -9)
+mesh = SubResource("BoxMesh_anho1")
+
+[node name="A35 Building" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 0, -72)
