@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cr57thg7k0tyk"]
+[gd_scene load_steps=44 format=3 uid="uid://cr57thg7k0tyk"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_buovh"]
 
@@ -121,6 +121,9 @@ size = Vector3(1, 15, 41)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ogfrb"]
 size = Vector3(1, 15, 41)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rojtv"]
+size = Vector3(52, 1, 43)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8uruf"]
 size = Vector3(52, 1, 43)
@@ -396,6 +399,7 @@ mesh = SubResource("BoxMesh_ogfrb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.5, 25.5, -7.5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="B52 Level 2/StaticBody3D"]
+shape = SubResource("BoxShape3D_rojtv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Level 2/StaticBody3D"]
 mesh = SubResource("BoxMesh_8uruf")
