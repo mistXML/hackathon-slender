@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ch2p6qxfcy26k" path="res://Scripts/Slenderman/slenderman.gd" id="1_p0fsi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p0fsi"]
-height = 2.416797
+height = 3.2752929
 
 [node name="Slenderman" type="CharacterBody3D"]
 script = ExtResource("1_p0fsi")
@@ -16,8 +16,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8275751, 0)
 debug_enabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.008398414, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2422402, 0)
 shape = SubResource("CapsuleShape3D_p0fsi")
+debug_fill = false
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("1_554q1")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -1.1000001, 0)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.30000013, 0)

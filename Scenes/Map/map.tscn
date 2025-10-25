@@ -17,6 +17,9 @@ size = Vector2(100, 100)
 
 [node name="Map" type="Node3D"]
 
+[node name="Slenderman" parent="." instance=ExtResource("2_jolfa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0372696, 7.311229, 0)
+
 [node name="Player" parent="." instance=ExtResource("1_xtf6f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8751221, 0)
 
@@ -32,9 +35,6 @@ shape = SubResource("BoxShape3D_jolfa")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Baseplate"]
 mesh = SubResource("PlaneMesh_xtf6f")
-
-[node name="Slenderman" parent="NavigationRegion3D" instance=ExtResource("2_jolfa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0372696, 7.311229, 0)
 
 [node name="Basic Enemy" parent="." instance=ExtResource("3_03x5g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.190065, 1.5, 1.3563371)
