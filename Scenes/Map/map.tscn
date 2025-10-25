@@ -1,8 +1,36 @@
-[gd_scene load_steps=44 format=3 uid="uid://cr57thg7k0tyk"]
+[gd_scene load_steps=53 format=3 uid="uid://cr57thg7k0tyk"]
+
+[ext_resource type="PackedScene" uid="uid://m57eoygtu3ch" path="res://models/pine_tree (1)/scene.gltf" id="1_jolfa"]
+[ext_resource type="Texture2D" uid="uid://cktodu02g7afh" path="res://models/ground_texture/Ground082L_1K-PNG_Color.png" id="1_pvgv4"]
+[ext_resource type="PackedScene" uid="uid://2np7p3huk5yh" path="res://models/pine_tree (2)/scene.gltf" id="2_03x5g"]
+[ext_resource type="Texture2D" uid="uid://cmgdb6lhe0rnp" path="res://models/ground_texture/Ground082L_1K-PNG_NormalDX.png" id="2_anho1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_buovh"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_xtf6f"]
+sky_material = SubResource("ProceduralSkyMaterial_buovh")
+
+[sub_resource type="Environment" id="Environment_jolfa"]
+background_mode = 2
+sky = SubResource("Sky_xtf6f")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+volumetric_fog_enabled = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_buovh"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fyo8k"]
+albedo_texture = ExtResource("1_pvgv4")
+normal_enabled = true
+normal_texture = ExtResource("2_anho1")
+uv1_scale = Vector3(45, 45, 45)
+texture_filter = 0
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_xtf6f"]
+material = SubResource("StandardMaterial3D_fyo8k")
 size = Vector2(200, 200)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_buovh"]
@@ -10,6 +38,8 @@ size = Vector3(20, 20, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xtf6f"]
 size = Vector3(20, 20, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_buovh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jolfa"]
 size = Vector3(1, 20, 3)
@@ -130,6 +160,13 @@ size = Vector3(52, 1, 43)
 
 [node name="Map" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jolfa")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
 [node name="Baseplate" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Baseplate"]
@@ -150,6 +187,7 @@ shape = SubResource("BoxShape3D_buovh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Walls/Wall 1a"]
 mesh = SubResource("BoxMesh_xtf6f")
+surface_material_override/0 = SubResource("StandardMaterial3D_buovh")
 
 [node name="Wall 1b" type="StaticBody3D" parent="B52 Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
@@ -403,3 +441,100 @@ shape = SubResource("BoxShape3D_rojtv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Level 2/StaticBody3D"]
 mesh = SubResource("BoxMesh_8uruf")
+
+[node name="Forest" type="Node3D" parent="."]
+
+[node name="Tree 1" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -19, 0, -40)
+
+[node name="Tree 2" parent="Forest" instance=ExtResource("2_03x5g")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -15, 0, -54)
+
+[node name="Sketchfab_Scene" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -91, 0, 0)
+
+[node name="Sketchfab_Scene2" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -23, 0, 22)
+
+[node name="Sketchfab_Scene3" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -42, 0, 10)
+
+[node name="Sketchfab_Scene4" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -77, 0, 14)
+
+[node name="Sketchfab_Scene5" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -47, 0, -51)
+
+[node name="Sketchfab_Scene6" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -36, 0, -43)
+
+[node name="Sketchfab_Scene7" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -50, 0, -25)
+
+[node name="Sketchfab_Scene8" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, -38, 0, 32)
+
+[node name="Sketchfab_Scene9" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, -40, 0, -15)
+
+[node name="Sketchfab_Scene10" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, -76, 0, -12)
+
+[node name="Sketchfab_Scene11" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, -62, 0, 4)
+
+[node name="Sketchfab_Scene12" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, -69, 0, -48)
+
+[node name="Sketchfab_Scene13" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, -64, 0, 40)
+
+[node name="Sketchfab_Scene14" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, -87, 0, 27)
+
+[node name="Sketchfab_Scene15" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(18, 0, 0, 0, 18, 0, 0, 0, 18, -46, 0, -77)
+
+[node name="Sketchfab_Scene16" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(17, 0, 0, 0, 17, 0, 0, 0, 17, -84, 0, -71)
+
+[node name="Sketchfab_Scene17" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(17, 0, 0, 0, 17, 0, 0, 0, 17, -91, 0, -31)
+
+[node name="Sketchfab_Scene18" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(17, 0, 0, 0, 17, 0, 0, 0, 17, -46, 0, 55)
+
+[node name="Sketchfab_Scene19" parent="Forest" instance=ExtResource("1_jolfa")]
+transform = Transform3D(17, 0, 0, 0, 17, 0, 0, 0, 17, -87, 0, 64)
+
+[node name="Sketchfab_Scene20" parent="Forest" instance=ExtResource("2_03x5g")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -48, 0, -15)
+
+[node name="Sketchfab_Scene21" parent="Forest" instance=ExtResource("2_03x5g")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -45, 0, -40)
+
+[node name="Sketchfab_Scene22" parent="Forest" instance=ExtResource("2_03x5g")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -79, 0, 39)
+
+[node name="Sketchfab_Scene23" parent="Forest" instance=ExtResource("2_03x5g")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -49, 0, 21)
+
+[node name="Sketchfab_Scene24" parent="Forest" instance=ExtResource("2_03x5g")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -67, 0, -32)
+
+[node name="Sketchfab_Scene25" parent="Forest" instance=ExtResource("2_03x5g")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -78, 0, -46)
+
+[node name="Sketchfab_Scene26" parent="Forest" instance=ExtResource("2_03x5g")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -19, 0, -29)
+
+[node name="Sketchfab_Scene27" parent="Forest" instance=ExtResource("2_03x5g")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -49, 0, -63)
+
+[node name="Sketchfab_Scene28" parent="Forest" instance=ExtResource("2_03x5g")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 27, 0, -44)
+
+[node name="Sketchfab_Scene29" parent="Forest" instance=ExtResource("2_03x5g")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 3, 0, 25)
+
+[node name="B52 Interior" type="Node3D" parent="."]
