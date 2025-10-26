@@ -17,12 +17,13 @@ var max_distance := 10.0 #we can adjust the required distance and stuff
 var min_transparency := 0.0
 var max_transparency := 8.0
 var dist
+@onready var sound = preload("res://Assets/Audio/static.mp3")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$AudioStreamPlayer3D.stream = sound
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	dist = global_position.distance_to(player.global_position)
 	if !chase:
 		aggressiveness += 0.005
@@ -46,7 +47,9 @@ func _process(_delta: float) -> void:
 		mat.set_shader_parameter("Transparency", current_transparency)
 	elif seen and dist < 20 and dist > 10: 
 		mat.set_shader_parameter("Transparency", 2)
-	
+		player.sub_health(1*delta)
+	if seen and !$AudioStreamPlayer3D.playing:
+		$AudioStreamPlayer3D.play() 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -76,3 +79,8 @@ func add_aggressiveness(val):
 	
 func random_teleport():
 	global_position = player.position + Vector3(randi_range(5, 20),0,randi_range(5, 20))
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body == player:
+		player.sub_health(1000)
