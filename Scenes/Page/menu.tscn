@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://c7eobc0uw25ae"]
+
+[ext_resource type="PackedScene" uid="uid://cyr20fsdsdvcx" path="res://Assets/Slenderman/scene.gltf" id="1_o3o3y"]
+[ext_resource type="Script" uid="uid://dcvyjq3kxh4ub" path="res://Scenes/Page/main_menu.gd" id="2_4e5kq"]
+[ext_resource type="Texture2D" uid="uid://bajw6d2qxdh7m" path="res://Assets/User Interface/PLAY.png" id="2_383sj"]
+[ext_resource type="Script" uid="uid://0rwugxvxg5e2" path="res://Scenes/Page/play.gd" id="2_nov4i"]
+[ext_resource type="Script" uid="uid://dwfcsnhohqpwf" path="res://Scenes/Page/quit.gd" id="3_383sj"]
+[ext_resource type="Texture2D" uid="uid://bkagn15lq75vb" path="res://Assets/User Interface/QUIZ.png" id="4_kw7od"]
+[ext_resource type="Texture2D" uid="uid://bp0os5tm57j82" path="res://Assets/User Interface/TITLE.png" id="7_4e5kq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4e5kq"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.18291433, 0.19335854, 0.18334863, 1)
+ground_bottom_color = Color(0.14577734, 0.18755421, 0.14751449, 1)
+ground_horizon_color = Color(0.18291433, 0.19335854, 0.18334863, 1)
+energy_multiplier = 0.5
+
+[sub_resource type="Sky" id="Sky_q72ln"]
+sky_material = SubResource("ProceduralSkyMaterial_4e5kq")
+
+[sub_resource type="Environment" id="Environment_ftm6c"]
+background_mode = 2
+sky = SubResource("Sky_q72ln")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Main Menu" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ftm6c")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_o3o3y")]
+transform = Transform3D(0.3081039, 0, 0.9513527, 0, 1, 0, -0.9513527, 0, 0.3081039, 1.2035652, -0.30000013, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.059835672, 1, 2)
+current = true
+fov = 70.3125
+
+[node name="Control" type="Control" parent="."]
+process_mode = 4
+layout_mode = 3
+anchor_right = 1.667
+anchor_bottom = 1.667
+offset_right = -0.3840332
+offset_bottom = -0.21606445
+script = ExtResource("2_4e5kq")
+
+[node name="Play" type="TextureButton" parent="Control"]
+process_mode = 3
+layout_mode = 0
+offset_left = 303.0
+offset_top = 400.0
+offset_right = 631.0
+offset_bottom = 602.0
+scale = Vector2(1.2, 1.2)
+texture_normal = ExtResource("2_383sj")
+script = ExtResource("2_nov4i")
+
+[node name="Quit" type="TextureButton" parent="Control"]
+process_mode = 3
+layout_mode = 0
+offset_left = 345.0
+offset_top = 604.0
+offset_right = 625.0
+offset_bottom = 796.0
+scale = Vector2(1.2, 1.2)
+texture_normal = ExtResource("4_kw7od")
+script = ExtResource("3_383sj")
+
+[node name="Title" type="Sprite2D" parent="Control"]
+process_mode = 4
+position = Vector2(576, 300)
+scale = Vector2(1.5, 1.541)
+texture = ExtResource("7_4e5kq")
+
+[connection signal="pressed" from="Control/Play" to="Control/Play" method="_on_pressed"]
+[connection signal="pressed" from="Control/Quit" to="Control/Quit" method="_on_pressed"]

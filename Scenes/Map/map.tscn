@@ -1,16 +1,104 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr57thg7k0tyk"]
+[gd_scene load_steps=14 format=3 uid="uid://cr57thg7k0tyk"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_buovh"]
+[ext_resource type="PackedScene" uid="uid://dn5xfommfsksc" path="res://Scenes/Player/player.tscn" id="1_xtf6f"]
+[ext_resource type="PackedScene" uid="uid://dgpuglw7ci7df" path="res://Scenes/Slenderman/slenderman.tscn" id="2_jolfa"]
+[ext_resource type="PackedScene" uid="uid://n6tqg56b4n1h" path="res://Scenes/Page/page.tscn" id="3_03x5g"]
+[ext_resource type="Texture2D" uid="uid://c7h2m6v46q0f7" path="res://Assets/Pages/Page3.png" id="4_pvgv4"]
+[ext_resource type="Shader" uid="uid://b6gxe7noni70l" path="res://Scenes/Player/static.gdshader" id="5_anho1"]
+[ext_resource type="Texture2D" uid="uid://b87iex271d1ct" path="res://Assets/User Interface/noise.png" id="6_fyo8k"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jolfa"]
+sky_top_color = Color(0.028978257, 0.055819497, 0.07618546, 1)
+sky_horizon_color = Color(0.20850992, 0.20200482, 0.19514441, 1)
+ground_horizon_color = Color(0.20850992, 0.20200482, 0.19514441, 1)
+use_debanding = false
+
+[sub_resource type="Sky" id="Sky_03x5g"]
+sky_material = SubResource("ProceduralSkyMaterial_jolfa")
+
+[sub_resource type="Environment" id="Environment_pvgv4"]
+background_mode = 2
+sky = SubResource("Sky_03x5g")
+tonemap_mode = 2
+sdfgi_enabled = true
+glow_enabled = true
+fog_light_color = Color(0.19639221, 0.22046098, 0.2505518, 1)
+fog_light_energy = 16.0
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_jolfa"]
+vertices = PackedVector3Array(-49.93466, 0.1770508, -49.5, -49.93466, 0.1770508, 49.5, 49.56534, 0.1770508, 49.5, 49.56534, 0.1770508, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+cell_height = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jolfa"]
+size = Vector3(100, 0.5, 100)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xtf6f"]
-size = Vector2(20, 20)
+size = Vector2(100, 100)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fyo8k"]
+shader = ExtResource("5_anho1")
+shader_parameter/Noise = ExtResource("6_fyo8k")
+shader_parameter/SCREEN_TEXTURE = ExtResource("6_fyo8k")
+shader_parameter/Transparency = 4.0
+shader_parameter/Slow = 25.0
 
 [node name="Map" type="Node3D"]
 
-[node name="Baseplate" type="StaticBody3D" parent="."]
+[node name="Moon" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, 1, 0, -1, -4.3711392e-08, 0, 21.223244, 0)
+light_energy = 0.05
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Baseplate"]
-shape = SubResource("WorldBoundaryShape3D_buovh")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pvgv4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Baseplate"]
+[node name="Slenderman" parent="." instance=ExtResource("2_jolfa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0372696, 0.51122904, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_xtf6f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8751221, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_jolfa")
+
+[node name="Baseplate" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.060245514, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Baseplate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43466187, -0.27294922, 0.089904785)
+shape = SubResource("BoxShape3D_jolfa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Baseplate"]
 mesh = SubResource("PlaneMesh_xtf6f")
+
+[node name="Page" parent="." instance=ExtResource("3_03x5g")]
+transform = Transform3D(-0.25881904, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881904, 1.4196997, 0.85811484, -3.0738134)
+page_texture = ExtResource("4_pvgv4")
+page_num = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+process_mode = 4
+material = SubResource("ShaderMaterial_fyo8k")
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="PageView" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -540.0
+offset_right = 480.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[connection signal="player_interact" from="Player" to="Page" method="_on_player_player_interact"]

@@ -1,0 +1,75 @@
+class_name Player extends CharacterBody3D
+
+const SPEED = 5.0
+const JUMP_VELOCITY = 4.5
+var sensitivity = 0.001
+var inventory = [null, null, null, null, null, null, null, null, null, null]
+var page_count = 0
+var health = 100
+@onready var page_view = get_tree().get_current_scene().get_node("PageView")
+@onready var slender = get_tree().get_current_scene().get_node("Slenderman")
+var page_on_screen = false
+signal player_interact
+
+func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		$Neck.rotate_y(-event.relative.x * sensitivity)
+		$Neck/Camera.rotate_x(-event.relative.y * sensitivity)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("quit") and !page_on_screen:
+		get_tree().quit()
+	if Input.is_action_just_pressed("interact"):
+		player_interact.emit()
+	if health < 1:
+		get_tree().change_scene_to_packed(load("res://Scenes/User Interface/death.tscn"))
+	if Input.is_action_just_pressed("quit") and page_on_screen:
+		page_view.visible = false
+		page_on_screen = false
+	if page_count == 8 and !page_on_screen:
+		get_tree().change_scene_to_packed(load("res://Scenes/User Interface/win.tscn"))
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	var direction = ($Neck.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+		
+	move_and_slide()
+		
+func get_inventory():
+	return inventory
+
+#slenderman ai = machine.learn();
+#@grok make slenderman work
+
+func add_to_inventory(_page, page_data):
+	page_view.visible = true
+	page_view.texture = page_data
+	page_on_screen = true
+	page_count += 1
+	slender.base_aggressiveness_mult(1.05)
+	slender.add_aggressiveness(1)
+	$PageCounter/Text.text = "Pages: " + str(page_count)
+		
+func sub_health(amount):
+	health -= amount

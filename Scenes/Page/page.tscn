@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://n6tqg56b4n1h"]
+
+[ext_resource type="Script" uid="uid://de14slobnx7fd" path="res://Scripts/Pages/page.gd" id="1_a4fut"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwqmd"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jt64j"]
+material = SubResource("StandardMaterial3D_mwqmd")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a4fut"]
+radius = 1.0
+
+[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_a4fut"]
+
+[node name="Page" type="Node3D"]
+script = ExtResource("1_a4fut")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.12249996, 8.742274e-08, -1.7484552e-08, -1.0709287e-08, 4.3711363e-08, -0.19999997, -1.0709288e-08, 0.9999999, 8.742276e-09, 0, 0, 0)
+mesh = SubResource("PlaneMesh_jt64j")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_a4fut")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamMP3_a4fut")
+parameters/looping = false
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

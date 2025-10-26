@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgpuglw7ci7df"]
+
+[ext_resource type="PackedScene" uid="uid://cyr20fsdsdvcx" path="res://Assets/Slenderman/scene.gltf" id="1_554q1"]
+[ext_resource type="Script" uid="uid://ch2p6qxfcy26k" path="res://Scripts/Slenderman/slenderman.gd" id="1_p0fsi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p0fsi"]
+height = 3.2752929
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p0fsi"]
+size = Vector3(2, 3, 2)
+
+[node name="Slenderman" type="CharacterBody3D"]
+script = ExtResource("1_p0fsi")
+
+[node name="NavAgent" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8275751, 0)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="NavAgent"]
+avoidance_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2422402, 0)
+shape = SubResource("CapsuleShape3D_p0fsi")
+debug_fill = false
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_554q1")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.30000013, 0)
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98167634, -0.25)
+shape = SubResource("BoxShape3D_p0fsi")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
