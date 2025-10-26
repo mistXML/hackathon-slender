@@ -16,17 +16,19 @@ var time_to_teleport = TELEPORT_TIMER
 var max_distance := 10.0 #we can adjust the required distance and stuff
 var min_transparency := 0.0
 var max_transparency := 8.0
+var dist
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	dist = global_position.distance_to(player.global_position)
 	if !chase:
 		aggressiveness += 0.005
-	if aggressiveness > 10 and global_position.distance_to(player.global_position) <= max_dist:
-		speed = 5
-		aggressiveness -= 0.01
+	if aggressiveness > 10 and dist <= max_dist:
+		speed = 4.5
+		aggressiveness -= 0.005
 		max_dist = 0.5
 		chase = true
 	if chase:
@@ -36,15 +38,16 @@ func _process(delta: float) -> void:
 			speed = 100
 			chase = false
 			max_dist = 7
-	var dist = global_position.distance_to(player.global_position)
 	var t = clamp(dist / max_distance, 0.0, 1.0)
 	var current_transparency = lerp(min_transparency, max_transparency, t)
 	
 	var mat = color_rect.material
 	if mat and mat is ShaderMaterial:
 		mat.set_shader_parameter("Transparency", current_transparency)
-
-
+	elif seen and dist < 20 and dist > 10: 
+		mat.set_shader_parameter("Transparency", 2)
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	look_at(player.position)

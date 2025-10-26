@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7eobc0uw25ae"]
+
+[ext_resource type="PackedScene" uid="uid://cyr20fsdsdvcx" path="res://Assets/Slenderman/scene.gltf" id="1_o3o3y"]
+[ext_resource type="Texture2D" uid="uid://bajw6d2qxdh7m" path="res://Assets/PLAY.png" id="2_383sj"]
+[ext_resource type="Script" uid="uid://0rwugxvxg5e2" path="res://Scenes/Page/play.gd" id="2_nov4i"]
+[ext_resource type="Script" uid="uid://dwfcsnhohqpwf" path="res://Scenes/Page/quit.gd" id="3_383sj"]
+[ext_resource type="Texture2D" uid="uid://bkagn15lq75vb" path="res://Assets/QUIZ.png" id="4_kw7od"]
+
+[node name="Main Menu" type="Node3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_o3o3y")]
+transform = Transform3D(0.3081039, 0, 0.9513527, 0, 1, 0, -0.9513527, 0, 0.3081039, 1.2035652, -0.30000013, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.059835672, 1, 2)
+fov = 70.3125
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 1.667
+anchor_bottom = 1.667
+offset_right = -0.3840332
+offset_bottom = -0.21606445
+
+[node name="Play" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 206.0
+offset_right = 381.0
+offset_bottom = 408.0
+scale = Vector2(1.9999988, 1.9999988)
+texture_normal = ExtResource("2_383sj")
+script = ExtResource("2_nov4i")
+
+[node name="Quit" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 733.0
+offset_top = 204.0
+offset_right = 1013.0
+offset_bottom = 396.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("4_kw7od")
+script = ExtResource("3_383sj")
+
+[connection signal="pressed" from="Control/Play" to="Control/Play" method="_on_pressed"]
+[connection signal="pressed" from="Control/Quit" to="Control/Quit" method="_on_pressed"]

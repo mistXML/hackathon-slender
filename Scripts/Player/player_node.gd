@@ -3,9 +3,9 @@ class_name Player extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var sensitivity = 0.001
-var inventory = []
+var inventory = [null, null, null, null, null, null, null, null, null, null]
 var page_count = 0
-@onready var slender = get_tree().get_current_scene().get_node("Player")
+@onready var slender = get_tree().get_current_scene().get_node("Slenderman")
 signal player_interact
 
 
@@ -54,8 +54,9 @@ func get_inventory():
 #@grok make slenderman work
 
 func add_to_inventory(page):
-	inventory.append(page)
+	var page_node_str
+	var page_img_str
 	page_count += 1
-	slender.base_aggressiveness_mult()
-	slender.add_aggressiveness()
+	slender.base_aggressiveness_mult(1.05)
+	slender.add_aggressiveness(1)
 	$PageCounter/Text.text = "Pages: " + str(page_count)

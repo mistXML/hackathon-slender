@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cujo5klya4dx"]
 
-[ext_resource type="Script" uid="uid://cmmed0ndq00b1" path="res://Scripts/Pages/page.gd" id="1_gg7lt"]
+[ext_resource type="Script" uid="uid://btbojoc5x3s0q" path="res://Scenes/Player/page_button_inv_class.gd" id="1_gg7lt"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -24,6 +24,7 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gg7lt")
+page = 1
 
 [node name="Page 2" type="Button" parent="."]
 layout_mode = 1

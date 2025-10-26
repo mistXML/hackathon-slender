@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bycmc4xd0eofr"
-path="res://.godot/imported/Page5real.png-22cc220cc4318344ad1b0fae29666252.ctex"
+uid="uid://bkagn15lq75vb"
+path="res://.godot/imported/QUIZ.png-7c09b650084660ae3dc3cc1d3bdbe40e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Pages/Page5real.png"
-dest_files=["res://.godot/imported/Page5real.png-22cc220cc4318344ad1b0fae29666252.ctex"]
+source_file="res://Assets/QUIZ.png"
+dest_files=["res://.godot/imported/QUIZ.png-7c09b650084660ae3dc3cc1d3bdbe40e.ctex"]
 
 [params]
 
