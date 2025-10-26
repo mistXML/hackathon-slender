@@ -1,0 +1,11 @@
+Model Information:
+* title:	Office table and chairs.
+* source:	https://sketchfab.com/3d-models/office-table-and-chairs-9e7e2f7c2f5a421f8e04cdc60c03cdf5
+* author:	adelpernt (https://sketchfab.com/adelpernt)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Office table and chairs." (https://sketchfab.com/3d-models/office-table-and-chairs-9e7e2f7c2f5a421f8e04cdc60c03cdf5) by adelpernt (https://sketchfab.com/adelpernt) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

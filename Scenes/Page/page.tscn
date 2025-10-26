@@ -6,6 +6,7 @@
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jt64j"]
 material = SubResource("StandardMaterial3D_mwqmd")
+size = Vector2(2.5, 2.5)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a4fut"]
 radius = 1.0
