@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cr57thg7k0tyk"]
+[gd_scene load_steps=71 format=3 uid="uid://cr57thg7k0tyk"]
 
 [ext_resource type="PackedScene" uid="uid://m57eoygtu3ch" path="res://assets/pine_tree_1/scene.gltf" id="1_jolfa"]
 [ext_resource type="Texture2D" uid="uid://cktodu02g7afh" path="res://textures/ground_texture/Ground082L_1K-PNG_Color.png" id="1_pvgv4"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://52ol01vlg8xg" path="res://textures/brick_texture/brick05 diffuse 1k.jpg" id="4_oydqy"]
 [ext_resource type="Texture2D" uid="uid://cscfhhe6btlm1" path="res://textures/brick_texture/brick05 roughness 1k.jpg" id="5_t6lfb"]
 [ext_resource type="Material" uid="uid://c2fbnkyb14wvh" path="res://textures/carpet_texture/carpet_texture.tres" id="6_t6lfb"]
+[ext_resource type="Material" uid="uid://fbyxow1i4ovt" path="res://textures/wood_texture/wood_texture.tres" id="7_qtk15"]
 [ext_resource type="PackedScene" uid="uid://dco64qf866wgj" path="res://assets/office_table/scene.gltf" id="10_l00y7"]
 [ext_resource type="PackedScene" uid="uid://ccy6nfa1g2jua" path="res://assets/office_table_and_chairs/scene.gltf" id="11_qtk15"]
 
@@ -132,6 +133,12 @@ size = Vector3(20, 0.1, 15)
 [sub_resource type="BoxMesh" id="BoxMesh_l8e3b"]
 size = Vector3(20, 0.1, 15)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_l8e3b"]
+size = Vector3(0.5, 5, 2.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qo3gp"]
+size = Vector3(0.5, 5, 2.5)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_eu35m"]
 size = Vector3(7.5, 0.1, 43)
 
@@ -182,6 +189,18 @@ size = Vector3(52, 1, 43)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8uruf"]
 size = Vector3(52, 1, 43)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qo3gp"]
+size = Vector3(1, 15, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_utnqo"]
+size = Vector3(1, 15, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tftes"]
+size = Vector3(1, 15, 7)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6an1p"]
+size = Vector3(1, 15, 7)
 
 [node name="Map" type="Node3D"]
 
@@ -375,26 +394,46 @@ shape = SubResource("BoxShape3D_t6lfb")
 material_override = ExtResource("3_eu35m")
 mesh = SubResource("BoxMesh_xdmry")
 
-[node name="Floor 1" type="StaticBody3D" parent="B52 Level 1"]
+[node name="Floor Atrium" type="StaticBody3D" parent="B52 Level 1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0, -7)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="B52 Level 1/Floor 1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="B52 Level 1/Floor Atrium"]
 shape = SubResource("BoxShape3D_kfta0")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Level 1/Floor 1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Level 1/Floor Atrium"]
 material_override = ExtResource("6_t6lfb")
 mesh = SubResource("BoxMesh_w3xn6")
 skeleton = NodePath("../../../B52 Level 2")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="B52 Level 1"]
+[node name="Floor Entrance" type="StaticBody3D" parent="B52 Level 1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="B52 Level 1/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="B52 Level 1/Floor Entrance"]
 shape = SubResource("BoxShape3D_w3xn6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Level 1/StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Level 1/Floor Entrance"]
 material_override = ExtResource("6_t6lfb")
 mesh = SubResource("BoxMesh_l8e3b")
+
+[node name="Door L" type="StaticBody3D" parent="B52 Level 1"]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -9, 2.5, -9.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="B52 Level 1/Door L"]
+shape = SubResource("BoxShape3D_l8e3b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Level 1/Door L"]
+material_override = ExtResource("7_qtk15")
+mesh = SubResource("BoxMesh_qo3gp")
+
+[node name="Door R" type="StaticBody3D" parent="B52 Level 1"]
+transform = Transform3D(-0.17364818, 0, 0.98480767, 0, 1, 0, -0.98480767, 0, -0.17364818, -9, 2.5, -5.2166824)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="B52 Level 1/Door R"]
+shape = SubResource("BoxShape3D_l8e3b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Level 1/Door R"]
+material_override = ExtResource("7_qtk15")
+mesh = SubResource("BoxMesh_qo3gp")
 
 [node name="B52 Level 2" type="Node3D" parent="."]
 
@@ -512,6 +551,26 @@ shape = SubResource("BoxShape3D_rojtv")
 material_override = ExtResource("3_eu35m")
 mesh = SubResource("BoxMesh_8uruf")
 
+[node name="Interior Wall 1" type="StaticBody3D" parent="B52 Level 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 17.5, -25.2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="B52 Level 2/Interior Wall 1"]
+shape = SubResource("BoxShape3D_qo3gp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Level 2/Interior Wall 1"]
+material_override = ExtResource("3_eu35m")
+mesh = SubResource("BoxMesh_utnqo")
+
+[node name="Interior Wall 2" type="StaticBody3D" parent="B52 Level 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 17.5, 9.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="B52 Level 2/Interior Wall 2"]
+shape = SubResource("BoxShape3D_tftes")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="B52 Level 2/Interior Wall 2"]
+material_override = ExtResource("3_eu35m")
+mesh = SubResource("BoxMesh_6an1p")
+
 [node name="Forest" type="Node3D" parent="."]
 
 [node name="Tree 1" parent="Forest" instance=ExtResource("1_jolfa")]
@@ -615,8 +674,8 @@ transform = Transform3D(-3.934025e-09, 0, 0.09, 0, 0.09, 0, -0.09, 0, -3.934025e
 [node name="Table 1" parent="B52 Interior" instance=ExtResource("10_l00y7")]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 19, 2, 9)
 
-[node name="Table 2" parent="B52 Interior" instance=ExtResource("10_l00y7")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 29.95, 2.1, 8.45)
+[node name="Table 2" parent="B52 Interior" instance=ExtResource("11_qtk15")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 29.237127, 1, 5.5783257)
 
 [node name="Table 3" parent="B52 Interior" instance=ExtResource("11_qtk15")]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 18, 1, -23)
