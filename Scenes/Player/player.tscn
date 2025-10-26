@@ -16,6 +16,11 @@ shape = SubResource("CapsuleShape3D_ea215")
 
 [node name="Neck" type="Node3D" parent="."]
 
+[node name="SpotLight3D" type="SpotLight3D" parent="Neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2613728, 0)
+light_color = Color(0.9999986, 0.9907188, 0.542572, 1)
+light_energy = 3.605
+
 [node name="Camera" type="Camera3D" parent="Neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.3291583)
 

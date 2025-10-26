@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://c2fbnkyb14wvh"]
+
+[ext_resource type="Texture2D" uid="uid://cilk1ylvr8ypk" path="res://textures/carpet_texture/Carpet012_1K-JPG_Color.jpg" id="1_r6oj6"]
+[ext_resource type="Texture2D" uid="uid://ddmiv62c61b2w" path="res://textures/carpet_texture/Carpet012_1K-JPG_Roughness.jpg" id="2_wiknb"]
+
+[resource]
+albedo_texture = ExtResource("1_r6oj6")
+roughness_texture = ExtResource("2_wiknb")
+uv1_scale = Vector3(10, 10, 10)

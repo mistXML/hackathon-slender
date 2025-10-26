@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://hfhwhvykrkjp"]
+
+[ext_resource type="Texture2D" uid="uid://52ol01vlg8xg" path="res://textures/brick_texture/brick05 diffuse 1k.jpg" id="1_56cxo"]
+[ext_resource type="Texture2D" uid="uid://cscfhhe6btlm1" path="res://textures/brick_texture/brick05 roughness 1k.jpg" id="2_bicsr"]
+
+[resource]
+albedo_texture = ExtResource("1_56cxo")
+roughness_texture = ExtResource("2_bicsr")
+uv1_scale = Vector3(5, 5, 5)
